@@ -5,6 +5,6 @@ Basically reimplemented [realworld](https://github.com/gothinkster/realworld) us
 
 A BIG SHOUT OUT TO [0xshadow-dev](https://github.com/0xshadow-dev)
 
-- <span style="color:green">✔</span> Initial setup.
-- <span style="color:green">✔</span> Add db connections and setup.
-- <span style="color:green">✔</span> Add user models, schemas and repository.
+<span style="color:green">✔</span> Initial setup.
+<span style="color:green">✔</span> Add db connections and setup.
+<span style="color:green">✔</span> Add user models, schemas and repository.
