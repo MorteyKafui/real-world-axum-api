@@ -8,4 +8,3 @@ A BIG SHOUT OUT TO [0xshadow-dev](https://github.com/0xshadow-dev)
 - [x] Initial setup.
 - [x] Add db connections and setup.
 - [x] Add user models, schemas and repository.
-- [x] completed
