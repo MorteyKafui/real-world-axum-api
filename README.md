@@ -5,6 +5,8 @@ Basically reimplemented [realworld](https://github.com/gothinkster/realworld) us
 
 A BIG SHOUT OUT TO [0xshadow-dev](https://github.com/0xshadow-dev)
 
-- [x] Initial setup.
-- [x] Add db connections and setup.
-- [x] Add user models, schemas and repository.
+- Initial setup.
+- Add db connections and setup.
+- Add user models, schemas and repository.
+- Add user registration
+- Add email verification
