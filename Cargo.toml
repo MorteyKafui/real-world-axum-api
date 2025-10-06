@@ -8,7 +8,7 @@ name = "realworld_axum_api"
 path = "src/lib.rs"
 
 [[bin]]
-name = "real-axum-api"
+name = "realworld-axum-api"
 path = "src/main.rs"
 
 
