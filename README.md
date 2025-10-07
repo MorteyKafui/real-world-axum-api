@@ -8,5 +8,6 @@ A BIG SHOUT OUT TO [0xshadow-dev](https://github.com/0xshadow-dev)
 - Initial setup.
 - Add db connections and setup.
 - Add user models, schemas and repository.
-- Add user registration
-- Add email verification
+- Add user registration.
+- Add email verification.
+- Add password reset.
