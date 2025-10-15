@@ -3,7 +3,8 @@ use std::sync::Arc;
 use crate::{
     repositories::{
         EmailVerificationRepository, EmailVerificationRepositoryTrait, PasswordResetRepository,
-        PasswordResetRepositoryTrait, UserRepository, UserRepositoryTrait,
+        PasswordResetRepositoryTrait, RefreshTokenRepository, RefreshTokenRepositoryTrait,
+        UserRepository, UserRepositoryTrait,
     },
     services::email_services::EmailService,
 };
@@ -18,6 +19,7 @@ pub struct AppState {
     pub email_verification_repository: Arc<dyn EmailVerificationRepositoryTrait>,
     pub email_service: Arc<EmailService>,
     pub password_reset_repository: Arc<dyn PasswordResetRepositoryTrait>,
+    pub refresh_token_repository: Arc<dyn RefreshTokenRepositoryTrait>,
 }
 
 impl AppState {
@@ -30,11 +32,21 @@ impl AppState {
             Arc::new(UserRepository::new(db.clone()));
         let email_verification_repository: Arc<dyn EmailVerificationRepositoryTrait> =
             Arc::new(EmailVerificationRepository::new(db.clone()));
-        let email_service =
-            Arc::new(EmailService::new().expect("Failed to initialize email service"));
 
         let password_reset_repository: Arc<dyn PasswordResetRepositoryTrait> =
             Arc::new(PasswordResetRepository::new(db.clone()));
+        let refresh_token_repository: Arc<dyn RefreshTokenRepositoryTrait> =
+            Arc::new(RefreshTokenRepository::new(db.clone()));
+
+        println!("Initializing email service...");
+        let email_service = match EmailService::new() {
+            Ok(service) => Arc::new(service),
+            Err(e) => {
+                eprintln!("Failed to initialize email service: {}", e);
+                eprintln!("Make sure all SMTP env vars are set in .env");
+                panic!("Email service initialization failed");
+            }
+        };
 
         Ok(Self {
             db,
@@ -42,6 +54,7 @@ impl AppState {
             email_verification_repository,
             email_service,
             password_reset_repository,
+            refresh_token_repository,
         })
     }
 }
