@@ -44,7 +44,6 @@ pub struct UserResponse {
 #[derive(Debug, Serialize)]
 pub struct UserData {
     pub email: String,
-    pub token: String,
     pub username: String,
     pub bio: String,
     pub image: Option<String>,
@@ -52,14 +51,20 @@ pub struct UserData {
 }
 
 impl UserData {
-    pub fn from_user_with_token(user: crate::models::User, token: String) -> Self {
+    pub fn from_user(user: crate::models::User) -> Self {
         Self {
             email: user.email,
-            token,
             username: user.username,
             bio: user.bio.unwrap_or_default(),
             image: user.image,
             email_verified: user.email_verified,
         }
     }
+}
+
+#[derive(Debug, Serialize)]
+pub struct LoginResponse {
+    pub user: UserData,
+    pub access_token: String,
+    pub refresh_token: String,
 }
