@@ -7,7 +7,7 @@ use axum::{
 
 use realworld_axum_api::{
     handlers::{
-        current_user, forgot_password, health_check, login, refresh_token, register,
+        current_user, forgot_password, health_check, login, logout, refresh_token, register,
         reset_password, verify_email,
     },
     state::AppState,
@@ -35,6 +35,7 @@ async fn main() {
         .route("/api/auth/forgot-password", post(forgot_password))
         .route("/api/auth/reset-password", post(reset_password))
         .route("/api/auth/refresh", post(refresh_token))
+        .route("/api/auth/logout", post(logout))
         .with_state(app_state);
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
